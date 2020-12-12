@@ -60,9 +60,9 @@
         android:text=""
         android:textColor="#B7AE90"
         android:textAlignment="viewEnd"
-        android:padding="10dp"
+        android:paddingRight="10dp"
         android:gravity="bottom"
-        android:maxLines="1">
+        android:maxLines="3">
     </TextView>
 
     <TextView
@@ -71,13 +71,13 @@
         android:layout_height="0dp"
         android:layout_weight="1.5"
         android:background="#fff"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:text=""
         android:textColor="#828282"
         android:textAlignment="viewEnd"
-        android:padding="10dp"
-        android:gravity="bottom"
-        android:maxLines="1">
+        android:paddingRight="10dp"
+        android:gravity="center"
+        android:maxLines="3">
     </TextView>
     
     <LinearLayout
@@ -143,6 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:background="#FFF"
                 android:layout_weight="1">
 
                 <LinearLayout
@@ -156,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#F3F3F3"
+                        android:background="@drawable/top_left_round_corner"
                         android:text="AC"
                         android:textColor="#ffa500"
                         android:textSize="30sp">
@@ -186,7 +187,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#F3F3F3"
+                        android:background="@drawable/top_right_round_corner"
                         android:text=")"
                         android:textColor="#ffa500"
                         android:textSize="30sp">

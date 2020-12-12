@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,divide,multiply,plus,minus,equals,dot,
@@ -150,9 +151,13 @@ public class MainActivity extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = result.getText().toString();
-                val = val.substring(0, val.length() - 1);
-                result.setText(val);
+                try {
+                    String val = result.getText().toString();
+                    val = val.substring(0, val.length() - 1);
+                    result.setText(val);
+                }
+                catch (Exception e){}
+
             }
         });
 
@@ -184,9 +189,14 @@ public class MainActivity extends AppCompatActivity {
         sqrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = result.getText().toString();
-                double r = Math.sqrt(Double.parseDouble(val));
-                result.setText(String.valueOf(r));
+                try {
+                    String val = result.getText().toString();
+                    double r = Math.sqrt(Double.parseDouble(val));
+                    result.setText(String.valueOf(r));
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         paranthesisLeft.setOnClickListener(new View.OnClickListener() {
@@ -242,35 +252,58 @@ public class MainActivity extends AppCompatActivity {
         inverse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result.setText(result.getText()+"^" + "(-1)");
+                try {
+                    result.setText(result.getText()+"^" + "(-1)");
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         factorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double val = Double.parseDouble(result.getText().toString());
-                double fact = factorial(val);
-                result.setText(String.valueOf(fact));
-                input.setText(val+"!");
+                try {
+                    double val = Double.parseDouble(result.getText().toString());
+                    double fact = factorial(val);
+                    result.setText(String.valueOf(fact));
+                    input.setText(val+"!");
+                }
+                catch(Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         square.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double d = Double.parseDouble(result.getText().toString());
-                double square = d*d;
-                result.setText(String.valueOf(square));
-                input.setText(d+"²");
+                try {
+                    double d = Double.parseDouble(result.getText().toString());
+                    double square = d*d;
+                    result.setText(String.valueOf(square));
+                    input.setText(d+"²");
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
         }
         });
         equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = result.getText().toString();
-                String replacedstr = val.replace('÷', '/').replace('×','*');
-                double res = eval(replacedstr);
-                result.setText(String.valueOf(res));
-                input.setText(val);
+                try {
+                    String val = result.getText().toString();
+                    String replacedstr = val.replace('÷', '/').replace('×','*');
+                    double res = eval(replacedstr);
+                    result.setText(String.valueOf(res));
+                    input.setText(val);
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    input.setText("Format Error!");
+                }
+
 
             }
         });
