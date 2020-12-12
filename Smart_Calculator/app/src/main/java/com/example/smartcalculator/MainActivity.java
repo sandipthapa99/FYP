@@ -1,7 +1,12 @@
 package com.example.smartcalculator;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             allClear,clear,paranthesisLeft,paranthesisRight;
     TextView input,result;
 
-    ImageView back_button;
+    ImageView back_button,camera;
 
     String piValue = "3.14159265";
 
@@ -33,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        camera = findViewById(R.id.camera);
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(open_camera,100);
             }
         });
 
@@ -310,12 +324,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    //find out the factorail
+    //Factorial function
     double factorial(double n){
         return (n==1 || n==0) ? 1 : n*factorial(n-1);
     }
 
-    //eval function
+    //Equation evaluator
     public static double eval(final String str) {
         return new Object() {
             int pos = -1, ch;
@@ -396,5 +410,13 @@ public class MainActivity extends AppCompatActivity {
                 return x;
             }
         }.parse();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Bitmap photo = (Bitmap)data.getExtras().get("data");
+//        imageView.setImageBitmap(photo);
+
     }
 }
