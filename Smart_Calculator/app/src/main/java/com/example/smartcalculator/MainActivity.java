@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    //Initializing IDs
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,divide,multiply,plus,minus,equals,dot,
             sin,cos,tan,log,ln,factorial,square,sqrt,inverse,pi,
             allClear,clear,paranthesisLeft,paranthesisRight;
@@ -23,14 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView back_button,camera;
 
+    //Value of pi
     String piValue = "3.14159265";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //removing titlebar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         back_button = findViewById(R.id.back_button);
@@ -49,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(open_camera,100);
             }
         });
-
 
         b0 = findViewById(R.id.b0);
         b1 = findViewById(R.id.b1);
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.input);
         result = findViewById(R.id.result);
 
+        //Setting onClickListener to make buttons interactive
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                 result.setText(result.getText()+"9");
             }
         });
-
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
