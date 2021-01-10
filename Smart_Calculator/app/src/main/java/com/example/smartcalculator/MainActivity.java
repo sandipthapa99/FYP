@@ -1,23 +1,57 @@
 package com.example.smartcalculator;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    //Initializing IDs
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,divide,multiply,plus,minus,equals,dot,
             sin,cos,tan,log,ln,factorial,square,sqrt,inverse,pi,
             allClear,clear,paranthesisLeft,paranthesisRight;
     TextView input,result;
 
+    ImageView back_button,camera;
+
+    //Value of pi
     String piValue = "3.14159265";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //removing titlebar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+        back_button = findViewById(R.id.back_button);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        camera = findViewById(R.id.camera);
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(open_camera,100);
+            }
+        });
 
         b0 = findViewById(R.id.b0);
         b1 = findViewById(R.id.b1);
@@ -56,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.input);
         result = findViewById(R.id.result);
 
+        //Setting onClickListener to make buttons interactive
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                 result.setText(result.getText()+"9");
             }
         });
-
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,9 +167,13 @@ public class MainActivity extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = result.getText().toString();
-                val = val.substring(0, val.length() - 1);
-                result.setText(val);
+                try {
+                    String val = result.getText().toString();
+                    val = val.substring(0, val.length() - 1);
+                    result.setText(val);
+                }
+                catch (Exception e){}
+
             }
         });
 
@@ -160,16 +198,21 @@ public class MainActivity extends AppCompatActivity {
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result.setText(result.getText()+"*");
+                result.setText(result.getText()+"×");
             }
         });
 
         sqrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = result.getText().toString();
-                double r = Math.sqrt(Double.parseDouble(val));
-                result.setText(String.valueOf(r));
+                try {
+                    String val = result.getText().toString();
+                    double r = Math.sqrt(Double.parseDouble(val));
+                    result.setText(String.valueOf(r));
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         paranthesisLeft.setOnClickListener(new View.OnClickListener() {
@@ -210,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 result.setText(result.getText()+"tan");
             }
         });
-        log.setOnClickListener(new View.OnClickListener() {
+        log.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.setText(result.getText()+"log");
@@ -225,38 +268,157 @@ public class MainActivity extends AppCompatActivity {
         inverse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result.setText(result.getText()+"^" + "(-1)");
+                try {
+                    result.setText(result.getText()+"^" + "(-1)");
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         factorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int val = Integer.parseInt(result.getText().toString());
-                int fact = factorial(val);
-                result.setText(String.valueOf(fact));
-                input.setText(val+"!");
+                try {
+                    double val = Double.parseDouble(result.getText().toString());
+                    double fact = factorial(val);
+                    result.setText(String.valueOf(fact));
+                    input.setText(val+"!");
+                }
+                catch(Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         square.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double d = Double.parseDouble(result.getText().toString());
-                double square = d*d;
-                result.setText(String.valueOf(square));
-                input.setText(d+"²");
+                try {
+                    double d = Double.parseDouble(result.getText().toString());
+                    double square = d*d;
+                    result.setText(String.valueOf(square));
+                    input.setText(d+"²");
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
         }
         });
         equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    String val = result.getText().toString();
+                    String replacedstr = val.replace('÷', '/').replace('×','*');
+                    double res = eval(replacedstr);
+                    result.setText(String.valueOf(res));
+                    input.setText(val);
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    input.setText("Format Error!");
+                }
+
 
             }
         });
 
 
     }
-    //find out the factorail
-    int factorial(int n){
+    //Factorial function
+    double factorial(double n){
         return (n==1 || n==0) ? 1 : n*factorial(n-1);
+    }
+
+    //Equation evaluator
+    public static double eval(final String str) {
+        return new Object() {
+            int pos = -1, ch;
+
+            void nextChar() {
+                ch = (++pos < str.length()) ? str.charAt(pos) : -1;
+            }
+
+            boolean eat(int charToEat) {
+                while (ch == ' ') nextChar();
+                if (ch == charToEat) {
+                    nextChar();
+                    return true;
+                }
+                return false;
+            }
+
+            double parse() {
+                nextChar();
+                double x = parseExpression();
+                if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char)ch);
+                return x;
+            }
+
+            // Grammar:
+            // expression = term | expression `+` term | expression `-` term
+            // term = factor | term `*` factor | term `/` factor
+            // factor = `+` factor | `-` factor | `(` expression `)`
+            //        | number | functionName factor | factor `^` factor
+
+            double parseExpression() {
+                double x = parseTerm();
+                for (;;) {
+                    if      (eat('+')) x += parseTerm(); // addition
+                    else if (eat('-')) x -= parseTerm(); // subtraction
+                    else return x;
+                }
+            }
+
+            double parseTerm() {
+                double x = parseFactor();
+                for (;;) {
+                    if      (eat('*')) x *= parseFactor(); // multiplication
+                    else if (eat('/')) x /= parseFactor(); // division
+                    else return x;
+                }
+            }
+
+            double parseFactor() {
+                if (eat('+')) return parseFactor(); // unary plus
+                if (eat('-')) return -parseFactor(); // unary minus
+
+                double x;
+                int startPos = this.pos;
+                if (eat('(')) { // parentheses
+                    x = parseExpression();
+                    eat(')');
+                } else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
+                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                    x = Double.parseDouble(str.substring(startPos, this.pos));
+                } else if (ch >= 'a' && ch <= 'z') { // functions
+                    while (ch >= 'a' && ch <= 'z') nextChar();
+                    String func = str.substring(startPos, this.pos);
+                    x = parseFactor();
+                    if (func.equals("sqrt")) x = Math.sqrt(x);
+                    else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
+                    else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
+                    else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
+                    else if (func.equals("log")) x = Math.log10(x);
+                    else if (func.equals("ln")) x = Math.log(x);
+                    else throw new RuntimeException("Unknown function: " + func);
+                } else {
+                    throw new RuntimeException("Unexpected: " + (char)ch);
+                }
+
+                if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
+
+                return x;
+            }
+        }.parse();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Bitmap photo = (Bitmap)data.getExtras().get("data");
+//        imageView.setImageBitmap(photo);
+
     }
 }
