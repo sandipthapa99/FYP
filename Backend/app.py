@@ -1,17 +1,20 @@
 from flask import Flask, render_template, url_for, request
 import os, pytesseract
-# from flask_uploads import UploadSet, configure_uploads, IMAGES
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 from PIL import Image
 
 # path for current location
 project_dir = os.path.dirname(os.path.abspath(__file__))
+
+# path for tesseract module
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 # setup appllication
 app = Flask(__name__,
             static_url_path='',static_folder='static', 
             template_folder='templates')   #referencing file folders
 
-# photos = UploadSet('photos', IMAGES)
+photos = UploadSet('photos', IMAGES)
 
 app.config['DEBUG'] = True
 app.config['UPLOAD_FOLDER'] = 'images'
@@ -28,7 +31,7 @@ def home():
     if request.method == 'POST':
         if 'photo' not in request.files:
             return 'There is no photo in form'
-        name = request.form['img-name'] + '.jpg'
+        name = 'a' + '.jpg'
         photo = request.files['photo']
         path = os.path.join(app.config['UPLOAD_FOLDER'], name)
         photo.save(path)
