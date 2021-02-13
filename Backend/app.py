@@ -3,6 +3,12 @@ import os, pytesseract
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from PIL import Image
 
+# importing our OCR engine
+from ocr_engine import ocr_engine
+
+# allow files of a specific type
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+
 # path for current location
 project_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -19,10 +25,10 @@ photos = UploadSet('photos', IMAGES)
 app.config['DEBUG'] = True
 app.config['UPLOAD_FOLDER'] = 'images'
 
-# class for image to text
-class GetText(object):
-    def __init__(self, file):
-        self.file = pytesseract.image_to_string(Image.open(project_dir + '/images/' + file))
+# function to check the file extension
+def allowed_file(filename):  
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # index route
 @app.route('/', methods=['GET', 'POST'])
