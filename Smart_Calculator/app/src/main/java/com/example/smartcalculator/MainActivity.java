@@ -3,8 +3,10 @@ package com.example.smartcalculator;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -14,6 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.scanlibrary.ScanActivity;
+import com.scanlibrary.ScanConstants;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     //Initializing IDs
@@ -45,13 +52,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         camera = findViewById(R.id.camera);
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(open_camera,100);
-            }
-        });
+//        camera.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openCamera();
+//            }
+//        });
 
         b0 = findViewById(R.id.b0);
         b1 = findViewById(R.id.b1);
@@ -414,11 +420,42 @@ public class MainActivity extends AppCompatActivity {
         }.parse();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap photo = (Bitmap)data.getExtras().get("data");
-//        imageView.setImageBitmap(photo);
+
+    public void openCamera(View v){
+        int REQUEST_CODE = 99;
+        int preference = ScanConstants.OPEN_CAMERA;
+        Intent intent = new Intent(this, ScanActivity.class);
+        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    public void openGallery(View v){
+        int REQUEST_CODE = 99;
+        int preference = ScanConstants.OPEN_MEDIA;
+        Intent intent = new Intent(this, ScanActivity.class);
+        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
+        startActivityForResult(intent, REQUEST_CODE);
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        Bitmap photo = (Bitmap)data.getExtras().get("data");
+//        imageView.setImageBitmap(photo);
+
+        if (requestCode == 99 && resultCode == Activity.RESULT_OK) {
+            Uri uri = data.getExtras().getParcelable(ScanConstants.SCANNED_RESULT);
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                getContentResolver().delete(uri, null, null);
+//                scannedImageView.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 }
