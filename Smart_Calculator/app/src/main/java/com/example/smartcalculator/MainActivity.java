@@ -52,12 +52,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         camera = findViewById(R.id.camera);
-//        camera.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openCamera();
-//            }
-//        });
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity2();
+            }
+        });
 
         b0 = findViewById(R.id.b0);
         b1 = findViewById(R.id.b1);
@@ -332,6 +333,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void openActivity2() {
+        Intent intent = new Intent(this, Scan_Activity.class);
+        startActivity(intent);
+    }
+
     //Factorial function
     double factorial(double n){
         return (n==1 || n==0) ? 1 : n*factorial(n-1);
