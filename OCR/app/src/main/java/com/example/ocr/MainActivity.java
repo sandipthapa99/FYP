@@ -35,11 +35,14 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import static com.example.ocr.CalcActivity.eval;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText mResultEt;
+    TextView calcResult;
     ImageView mPreviewIv;
-    Button scan;
+    Button scan,calculate;
 
     private static final  int CAMERA_REQUEST_CODE = 200;
     private static final  int STORAGE_REQUEST_CODE = 400;
@@ -61,14 +64,36 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayUseLogoEnabled(true);
         actionBar.setTitle("Smart Calculator");
 
+
+
         mResultEt = findViewById(R.id.resultEt);
         mPreviewIv =findViewById(R.id.imagev);
+        calcResult = findViewById(R.id.calcResult);
         scan = findViewById(R.id.start_scan);
 
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showImageImportDialog();
+            }
+        });
+
+        calculate = findViewById(R.id.calculate);
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String val = mResultEt.getText().toString();
+                    String replacedstr = val.replace('÷', '/').replace('×','*').replace('x','*');
+                    replacedstr = replacedstr.trim();
+                    double res = eval(replacedstr);
+                    calcResult.setText(String.valueOf(res));
+//                    input.setText(val);
+                }
+                catch (Exception e){
+                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    input.setText("Format Error!");
+                }
             }
         });
 

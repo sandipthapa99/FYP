@@ -9,7 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#687166</color>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccent">#ff9f43</color>
+
+    <color name="LightOrange">#ffa834</color>
+    <color name="LightPink">#ff7767</color>
+    <color name="LightYellow">#f1be31</color>
+    <color name="LightGreen">#00C392</color>
 
 
 </resources>

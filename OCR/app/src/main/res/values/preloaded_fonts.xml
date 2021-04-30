@@ -5,9 +5,11 @@
         <item>@font/alike</item>
         <item>@font/amaranth</item>
         <item>@font/antic</item>
+        <item>@font/comfortaa</item>
         <item>@font/muli</item>
         <item>@font/muli_black</item>
         <item>@font/muli_extralight</item>
+        <item>@font/muli_semibold</item>
         <item>@font/ubuntu</item>
     </array>
 </resources>
