@@ -22,7 +22,7 @@
                 app:cardBackgroundColor="#fff"
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="3dp"
-                app:cardElevation="3dp">
+                app:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,132 +46,63 @@
                         android:maxHeight="250dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#fff"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="3dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/muli_semibold"
-                        android:text="Scan Result"
-                        android:textAlignment="center"
-                        android:textColor="#000"
-                        android:textSize="20sp" />
-                    <!--The scanned text will be here-->
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#fff"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="3dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/muli_semibold"
-                        android:text="Calculation Result"
-                        android:textAlignment="center"
-                        android:textColor="#000"
-                        android:textSize="24sp" />
-                    <!--The scanned text will be here-->
-                    <TextView
-                        android:id="@+id/calcResult"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autoLink="all"
-                        android:background="@null"
-                        android:fontFamily="@font/muli_black"
-                        android:hint="Scanned result will be displayed here"
-                        android:padding="5dp"
-                        android:textAlignment="center"
-                        android:textColor="#000"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="90dp"
                     app:cardCornerRadius="15dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="0dp"
+                    android:elevation="3dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/LightYellow"
-                        android:padding="10dp">
+                        android:paddingTop="10dp">
 
                         <TextView
                             android:id="@+id/card1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Scan Result"
+                            android:text="Scan Result:"
                             android:textSize="20sp"
                             android:textColor="@color/white"
                             android:textStyle="bold"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"/>
+
                         <EditText
                             android:id="@+id/resultEt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="all"
-                            android:background="@null"
-                            android:fontFamily="@font/muli_semibold"
-                            android:hint="Scanned result will be displayed here"
-                            android:padding="5dp"
-                            android:textAlignment="center"
-                            android:textColor="#000" />
-
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/card1"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:textColor="@color/white"
-                            android:text="Hello this is something to be shared."/>
+                            android:hint="Test"
+                            android:autoLink="all"
+                            android:background="@null"
+                            android:fontFamily="@font/scada_bold"
+                            android:paddingTop="5dp"
+                            android:textColor="#fff"
+                            android:textSize="30sp" />
 
-                        <ImageView
-                            android:layout_width="106dp"
-                            android:layout_height="78dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/scan" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="106dp"-->
+<!--                            android:layout_height="78dp"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:src="@drawable/scan" />-->
 
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="90dp"
                     app:cardCornerRadius="15dp"
                     android:layout_marginTop="20dp">
 
@@ -179,32 +110,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/LightGreen"
-                        android:padding="10dp">
+                        android:paddingTop="10dp">
 
                         <TextView
                             android:id="@+id/card2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Calculation Result"
+                            android:text="Calculation Result:"
                             android:textSize="20sp"
                             android:textColor="@color/white"
                             android:textStyle="bold"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"/>
 
                         <TextView
+                            android:id="@+id/calcResult"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/card2"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
+                            android:autoLink="all"
+                            android:fontFamily="@font/scada_bold"
+                            android:paddingTop="5dp"
                             android:textColor="@color/white"
-                            android:text="Hello this is something to be shared."/>
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/scan"
-                            android:layout_alignParentRight="true"/>
+                            android:textSize="30sp" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="100dp"-->
+<!--                            android:src="@drawable/scan"-->
+<!--                            android:layout_alignParentRight="true"/>-->
 
                     </RelativeLayout>
 
