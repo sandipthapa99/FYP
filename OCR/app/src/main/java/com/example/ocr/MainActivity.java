@@ -88,11 +88,9 @@ public class MainActivity extends AppCompatActivity {
                     replacedstr = replacedstr.trim();
                     double res = eval(replacedstr);
                     calcResult.setText(String.valueOf(res));
-//                    input.setText(val);
                 }
                 catch (Exception e){
-                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    input.setText("Format Error!");
+                    Toast.makeText(MainActivity.this, "Format Error or Field Empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -59,12 +59,12 @@
                     android:layout_height="90dp"
                     app:cardCornerRadius="15dp"
                     android:layout_marginTop="0dp"
-                    android:elevation="3dp">
+                    app:cardElevation="3dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/LightYellow"
+                        android:background="#19536C"
                         android:paddingTop="10dp">
 
                         <TextView
@@ -83,10 +83,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/card1"
                             android:layout_marginLeft="10dp"
-                            android:hint="Test"
                             android:autoLink="all"
                             android:background="@null"
                             android:fontFamily="@font/scada_bold"
+                            android:hint=""
                             android:paddingTop="5dp"
                             android:textColor="#fff"
                             android:textSize="30sp" />
@@ -104,12 +104,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     app:cardCornerRadius="15dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    app:cardElevation="3dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/LightGreen"
+                        android:background="#F6916C"
                         android:paddingTop="10dp">
 
                         <TextView
