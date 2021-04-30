@@ -1,4 +1,4 @@
-package com.example.smartcalculator;
+package com.example.ocr;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.scanlibrary.ScanActivity;
-import com.scanlibrary.ScanConstants;
-
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class CalcActivity extends AppCompatActivity {
     //Initializing IDs
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,divide,multiply,plus,minus,equals,dot,
             sin,cos,tan,log,ln,factorial,square,sqrt,inverse,pi,
@@ -41,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //getSupportActionBar().hide();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calc);
 
         back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -310,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
-        }
+            }
         });
         equals.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -335,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openActivity2() {
-        Intent intent = new Intent(this, Scan_Activity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -427,42 +424,5 @@ public class MainActivity extends AppCompatActivity {
         }.parse();
     }
 
-
-//    public void openCamera(View v){
-//        int REQUEST_CODE = 99;
-//        int preference = ScanConstants.OPEN_CAMERA;
-//        Intent intent = new Intent(this, ScanActivity.class);
-//        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
-//        startActivityForResult(intent, REQUEST_CODE);
-//    }
-
-//    public void openGallery(View v){
-//        int REQUEST_CODE = 99;
-//        int preference = ScanConstants.OPEN_MEDIA;
-//        Intent intent = new Intent(this, ScanActivity.class);
-//        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
-//        startActivityForResult(intent, REQUEST_CODE);
-//
-//    }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-////        Bitmap photo = (Bitmap)data.getExtras().get("data");
-////        imageView.setImageBitmap(photo);
-//
-//        if (requestCode == 99 && resultCode == Activity.RESULT_OK) {
-//            Uri uri = data.getExtras().getParcelable(ScanConstants.SCANNED_RESULT);
-//            Bitmap bitmap = null;
-//            try {
-//                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-//                getContentResolver().delete(uri, null, null);
-////                scannedImageView.setImageBitmap(bitmap);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//    }
 
 }

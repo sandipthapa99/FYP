@@ -22,8 +22,11 @@ import android.provider.MediaStore;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.Frame;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText mResultEt;
     ImageView mPreviewIv;
+    Button scan;
 
     private static final  int CAMERA_REQUEST_CODE = 200;
     private static final  int STORAGE_REQUEST_CODE = 400;
@@ -52,10 +56,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setSubtitle("Click Image button to insert Image.");
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setLogo(R.mipmap.logo);
+//        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        actionBar.setTitle("Smart Calculator");
 
         mResultEt = findViewById(R.id.resultEt);
         mPreviewIv =findViewById(R.id.imagev);
+        scan = findViewById(R.id.start_scan);
+
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showImageImportDialog();
+            }
+        });
 
         //camera permission
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -86,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showImageImportDialog() {
         //items to display in dialog
-        String[] items = {"Camers", "Gallery"};
+        String[] items = {"Camera", "Gallery"};
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         //set title
         dialog.setTitle("Select Image");

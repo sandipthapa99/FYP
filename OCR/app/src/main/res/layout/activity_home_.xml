@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home_Activity"
+    android:background="@color/white"
+    android:padding="30dp">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_mobile2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/muli_black"
+            android:text="Calculation\n made easy"
+            android:textAlignment="center"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textSize="36sp"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ubuntu"
+            android:text="Just Scan Your Problem"
+            android:textAlignment="center"
+            android:textColor="#576574"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+            <Button
+                android:id="@+id/scan_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:fontFamily="@font/amaranth"
+                android:text="Scan"
+                android:textColor="#f1f1f1"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/calc_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:fontFamily="@font/amaranth"
+                android:text="Calculator"
+                android:textColor="#f1f1f1"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="700dp"-->
+<!--        android:layout_height="400dp"-->
+<!--        android:background="@drawable/wave"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <ImageView-->
+<!--        android:layout_width="357dp"-->
+<!--        android:layout_height="207dp"-->
+<!--        android:layout_marginTop="56dp"-->
+<!--        android:layout_marginEnd="4dp"-->
+<!--        android:background="@drawable/mobile"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="180dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:lineSpacingExtra="4dp"-->
+<!--        android:text="Scanning made easy \nalive just for you"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="#160E2C"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@id/imageView" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/scan_btn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#000"-->
+<!--        android:text="Scan"-->
+<!--        android:textColor="#fff"-->
+<!--        android:transitionName="button_trans"-->
+<!--        tools:layout_editor_absoluteX="16dp"-->
+<!--        tools:layout_editor_absoluteY="461dp" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/calc_btn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#000"-->
+<!--        android:text="Use calculator"-->
+<!--        android:textColor="#fff"-->
+<!--        android:transitionName="button_trans"-->
+<!--        tools:layout_editor_absoluteX="-16dp"-->
+<!--        tools:layout_editor_absoluteY="527dp" />-->
+
+</ScrollView>
